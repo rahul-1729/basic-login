@@ -1,12 +1,15 @@
 const express = require('express');
 const connectDB = require('./src/config/db');
-
+const userRoutes = require("./src/routes/user")
+// require('dotenv').config();
 const app = express();
-connectDB()
-// app.use();
 
-PORT = process.env.PORT;
+app.use(express.json());
+connectDB()
+app.use('/api/user',userRoutes);
+
+PORT = 4000;
 
 app.listen(PORT,()=>{
-    console.log("Connected to server 4000");
+    console.log(`Connected to server ${PORT}`);
 })
